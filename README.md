@@ -1,9 +1,12 @@
 #Pet-project
 #Some words about this project
 
-I was working on this project in a hakaton. Our team must to create a web-app, that can help for workers to construct directions for cleaning roads in Lipeck
-Unfortunately, some problens taked place, and project was not complete. But my task was to create frontend, and here is it.
+I worked on this project in “Hakaton”. Our team had to create a web-app that could help workers to construct directions for cleaning the roads in the Russian city - Lipeck.
+Unfortunately, some problems took place and the project as a whole hasn't been completed. But my task was to create only the frontend, and here it is.
+
 Functions of the application:
-1) Show and edit base information about every route in the map(in idea, data about routes and the location of transport on them must to receiving from back-end). 
-You can change transport type, start and end place and add/remove control points
-2) Find any place in the word map using lat and lang
+
+To show and edit base information about every route on the map. 
+The data about routes and locations of transport on the map is supposed to be received from the backend. You can change transport types, starting and ending zones and you’re able to add/remove control points.
+
+To find any place in the word map using lat and lang.
