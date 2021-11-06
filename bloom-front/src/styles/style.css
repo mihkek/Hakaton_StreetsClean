@@ -313,6 +313,41 @@ div.leaflet-top.leaflet-right{
     transform: rotate(45deg);
   }
 
+
+  /* Loader */
+
+  .loader {
+    position:absolute;
+    top: calc(50% - 2.5em);
+    left: calc(50% - 4em);
+    width: 3em;
+    height: 3em;
+    border: 1.1em solid rgba(192, 176, 176, 0.2);
+    border-left: 1.1em solid #186fbb;
+    border-radius: 50%;
+    animation: load8 1.1s infinite linear;
+    opacity: 2;
+    z-index: 9999999;
+  }
+  .loader-local{
+    position: relative;
+  }
+  @keyframes load8 {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  .loader__container{
+      /* position: relative; */
+      width: 100%;
+      height: 100%;
+      background-color: black;
+      opacity: 0.3;
+  }
   
   /* Points direction dialog */
 
@@ -323,6 +358,7 @@ div.leaflet-top.leaflet-right{
     width: 90%;
     height: 90%;
     border: 2px solid #186fbb;
+    opacity: 0.9;
   }
     
   .points_directions__container{
@@ -340,6 +376,10 @@ div.leaflet-top.leaflet-right{
     margin-top: 2%;
     margin-left: 6%;  
     border-radius: 5%;
+  }
+  .loading{ 
+    background-color: black;
+    opacity: 0.4;
   }
   .points_directions__item--container{
       position: absolute;

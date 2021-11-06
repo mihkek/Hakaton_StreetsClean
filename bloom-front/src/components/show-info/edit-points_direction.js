@@ -2,6 +2,7 @@ import { useSelector } from "react-redux"
 import { useEffect } from "react"
 import { useState } from "react"
 import CloseButton from "../library/close-button"
+import LoaderSpinner from "../library/loader-spinner"
 
 
 const EditPointsDirection = (props) =>{
@@ -11,21 +12,22 @@ const EditPointsDirection = (props) =>{
         2.CloseAction
         3.CloseSaveAction
     */
+   const [pageData, setPageData] = useState({
+        points: [
+            {lat: 1, lng: 2, adress: "Test"},
+            {lat: 1, lng: 2, adress: "Test"},
+            {lat: 1, lng: 2, adress: "Test"}
+        ]//props.points == undefined ? [] : props.points
+   })
     return(
         <div className='modalWindow points_directions__container' >
             
                 <div className="points_directions">
                     <CloseButton CloseAction={props.CloseAction}/>
                     
-                  
-                    <PointItem />
-                    <PointItem />
-                    <PointItem />
-                    <PointItem />
-                    <PointItem />
-                    <PointItem />
-                    <PointItem />
-                    <PointItem />
+                    {pageData.points.map(e =>
+                        <PointItem />    
+                    )} 
                     
                     <div className="points_directions__acitons">
                         <button className="blue-button points_directions__action-button">Сохранить изменения</button>
@@ -46,7 +48,8 @@ const PointItem = (props) =>{
         3. Adress
     */
     return(
-        <div className="points_directions__item">
+        <div className="points_directions__item loading">
+            <LoaderSpinner />
             <div className="points_directions__item--container">
                 <label> Широта</label>
                 <input type="text" value="Test"/>
