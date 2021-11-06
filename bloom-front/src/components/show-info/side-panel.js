@@ -7,6 +7,7 @@ const SidePanel = (props) =>{
         1.Route
         2.SaveAction
         3.CloseAction
+        4.EditControlPointsAction
     */
    var t = props.route.points[0]
    
@@ -61,8 +62,7 @@ const SidePanel = (props) =>{
                         <input name="timeWork" type="text" value={pageData.route.timeWork} onChange={onChangeFormValueAction} />
                     </div>
                     <div>
-                        <label for="routeName" class="placeholder">Начальная точка</label>
-                        <input name="startPoint" type="text" value={props.route.points[0]} onChange={onChangeFormValueAction}/>
+                        <button className="blue-button" onClick={props.EditControlPointsAction}>Изменить контрольные точки</button>
                     </div>
 
                     <div>

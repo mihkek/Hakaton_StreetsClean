@@ -255,4 +255,162 @@ div.leaflet-top.leaflet-right{
 
   }
 
+  /* Exit button */
+  .cl-btn-2 {
+    /* margin: 20px; */
+    position: absolute;
+    /* margin-top: 1%; */
+    /* margin-left: 0%; */
+    display: flex;
+    justify-content: center;
+    /* float: left; */
+    /* padding: 0%; */
+    top: 10px;
+    right: 10px;
+  }
+  .cl-btn-2 div {
+    cursor: pointer;
+    position: relative;  
+    height: 58px;
+    width: 40px;
+  }
+  .cl-btn-2 .leftright {
+    height: 3px;
+    width: 40px;
+    position: absolute;
+    margin-top: 24px;
+    background-color: #337AB7;
+    border-radius: 2px;
+    transform: rotate(45deg);
+    transition: all .3s ease-in;
+  }
+  .cl-btn-2 .rightleft {
+    height: 3px;
+    width: 40px;
+    position: absolute;
+    margin-top: 24px;
+    background-color: #337AB7;
+    border-radius: 2px;
+    transform: rotate(-45deg);
+    transition: all .3s ease-in;
+  }
+  .cl-btn-2 .close-btn {
+    margin: 54px 0 0 -5px;
+    position: absolute;
+    color: #337AB7;
+    font-family: Tahoma, sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: all .3s ease-in;
+    opacity: 0; 
+  }
+  .cl-btn-2 div:hover .leftright {
+    transform: rotate(-45deg);
+    background-color: #000;
+  }
+  .cl-btn-2 div:hover .rightleft {
+    transform: rotate(45deg);
+  }
+
+  
+  /* Points direction dialog */
+
+  .points_directions{
+    position: absolute;
+    margin: 0 auto;
+    background-color: white;
+    width: 90%;
+    height: 90%;
+    border: 2px solid #186fbb;
+  }
+    
+  .points_directions__container{
+      margin: 0 auto;
+      width: 80%;
+      height: 85%;
+      top: 10%;
+  }
+  .points_directions__item{
+    position: relative;
+    display: inline-block;
+    border: 3px solid #4f88b8;
+    width: 38%;
+    height: 15%;
+    margin-top: 2%;
+    margin-left: 6%;  
+    border-radius: 5%;
+  }
+  .points_directions__item--container{
+      position: absolute;
+      width: 100%;
+      height: 100%;
+  }
+  .points_directions__acitons{
+      display: block;
+      position: absolute;
+      border: none;
+      border-top: 1px solid #60a3d8;
+      width: 96%;
+      height: 10%;
+      top: 90%;
+      left: 2%;
+      right: 2%;
+  }
+  .points_directions__action-button{
+    margin-left: 10%;
+    margin-top: 5px;
+    display: inline-block;
+  }
+  .points_directions__item-button{
+      position: absolute;
+      /* margin-top: 1%; */
+      top: -10px;
+      right: 10px;
+      width: 10%;
+      height: 10%;
+      text-align: center;
+      line-height: 0;
+      cursor: pointer;
+      
+      background: #60a3d8 linear-gradient(#df718c, #df718c 50%, #df718c);
+  }
+  .points_directions__item-button--save{
+    position: absolute;
+    /* margin-top: 1%; */
+    bottom: 1px;
+    right: 10px;
+    width: 10%;
+    height: 10%;
+    text-align: center;
+    line-height: 0;
+    cursor: pointer;
+    background: #60a3d8 linear-gradient(#89bbe2, #60a3d8 50%, #378bce);
+}
+  .points_directions__item input{
+    display: inline-block;
+    position: relative;
+   
+    padding: 3px 6px;
+    margin-top: 3px;
+    width: 60%;
+    /* margin: 8px 0; */
+    box-sizing: border-box;
+    border: none;
+    border: 1px solid #03a9f4;
+    border-radius: 10%;
+  }
+  .points_directions__item label{
+    display: inline-block;
+    position: relative;
+    left: 10px;
+    width: 75px;
+  }
+  .points_directions__item-button:hover {
+    background-image: linear-gradient(#bb2b4f, #bb2b4f 50%, #bb2b4f);
+  }
+  .points_directions__item-button:active {
+    background-image: linear-gradient(#bb2b4f, #bb2b4f 50%, #bb2b4f);
+  }
+
   

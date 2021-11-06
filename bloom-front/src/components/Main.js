@@ -10,6 +10,7 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import {select_route, edit_selected_route, change_route} from '../state_container/actions'
 import Loader from "./library/Loader";
+import EditPointsDirection from "./show-info/edit-points_direction";
 
 const Main = () =>{
     const selectedRouteId = useSelector(state => state.selectedRouteId)
@@ -22,6 +23,7 @@ const Main = () =>{
     const [state, setState] = useState({
         showCenter: false,
         showSide: false,
+        showEditPointsDialog: true,
         currentRoute: {},
         clicked_lat: 0,
         clicked_lng: 0
@@ -44,21 +46,24 @@ const Main = () =>{
         setState({
             ...state,
             showCenter: true,
-            showSide: false
+            showSide: false,
+            showEditPointsDialog: false
         })
     }
     const showSide = () =>{
         setState({
             ...state,
             showSide: true,
-            showCenter: false
+            showCenter: false,
+            showEditPointsDialog: false
         })
     }
     const hideAll = () =>{
         setState({
             ...state,
             showSide: false,
-            showCenter: false
+            showCenter: false,
+            showEditPointsDialog: false
         })
     }
     const saveRouteData = (params) =>{
@@ -79,6 +84,14 @@ const Main = () =>{
     const findAdress = (adress) =>{
         alert(adress)
     }
+    const editControlPoints = () =>{
+        setState({
+            ...state,
+            showSide: false,
+            showCenter: false,
+            showEditPointsDialog: true,
+        })
+    }
     return(
         <React.Fragment>
             {isLoad && <Loader/>}
@@ -92,7 +105,8 @@ const Main = () =>{
                 />
 
                 {state.showCenter && <ModalCenter route={currentRouteCopy} CloseAction={hideAll} TargetAction={showSide} />}
-                {state.showSide && <SidePanel route={currentRouteCopy}  SaveAction={saveRouteData} CloseAction={hideAll} /> }
+                {state.showSide && <SidePanel route={currentRouteCopy}  SaveAction={saveRouteData} CloseAction={hideAll} EditControlPointsAction={editControlPoints}/> }
+                {state.showEditPointsDialog && <EditPointsDirection CloseAction={hideAll}/>  }
             </div>
 
         </React.Fragment>
