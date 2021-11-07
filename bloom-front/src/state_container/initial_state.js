@@ -5,7 +5,7 @@ import * as tehTypes from '../components/constants/tehnikTypes'
 export const initial_state = {
     isLoad: false,
     //Это я должен получать с бэка!
-    routs: [
+    routs:  [
         {
             routeId: 1,
             name: "Тестовый маршрут 1",

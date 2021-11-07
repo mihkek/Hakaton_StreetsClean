@@ -1,5 +1,5 @@
 import Map from "./Map"
-import L from "leaflet";
+import L, { point } from "leaflet";
 import "leaflet-routing-machine";
 import React from "react";
 import ModalCenter from "./show-info/modal-center";
@@ -23,7 +23,7 @@ const Main = () =>{
     const [state, setState] = useState({
         showCenter: false,
         showSide: false,
-        showEditPointsDialog: true,
+        showEditPointsDialog: false,
         currentRoute: {},
         clicked_lat: 0,
         clicked_lng: 0
@@ -92,6 +92,18 @@ const Main = () =>{
             showEditPointsDialog: true,
         })
     }
+    const saveNewPointsData = (points) =>{
+        if(currentRouteCopy == undefined)
+            return 
+
+        var routeCopy = currentRouteCopy
+        routeCopy.points = points
+        dispatch(edit_selected_route({
+            route: routeCopy
+        }))
+        dispatch(change_route())
+        hideAll()
+    }
     return(
         <React.Fragment>
             {isLoad && <Loader/>}
@@ -104,9 +116,21 @@ const Main = () =>{
                     ButtonAction = {findAdress}
                 />
 
-                {state.showCenter && <ModalCenter route={currentRouteCopy} CloseAction={hideAll} TargetAction={showSide} />}
-                {state.showSide && <SidePanel route={currentRouteCopy}  SaveAction={saveRouteData} CloseAction={hideAll} EditControlPointsAction={editControlPoints}/> }
-                {state.showEditPointsDialog && <EditPointsDirection CloseAction={hideAll}/>  }
+                {state.showCenter && <ModalCenter 
+                                        route={currentRouteCopy} 
+                                        CloseAction={hideAll} 
+                                        TargetAction={showSide} />}
+
+                {state.showSide && <SidePanel 
+                                        route={currentRouteCopy}  
+                                        SaveAction={saveRouteData} 
+                                        CloseAction={hideAll} 
+                                        EditControlPointsAction={editControlPoints}/> }
+
+                {state.showEditPointsDialog && <EditPointsDirection 
+                                                    CloseSaveAction={saveNewPointsData}
+                                                    CloseAction={hideAll} 
+                                                    Points={currentRouteCopy.points}/>  }
             </div>
 
         </React.Fragment>

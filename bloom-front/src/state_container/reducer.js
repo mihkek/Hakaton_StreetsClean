@@ -36,11 +36,13 @@ export function app_reducer(state = initial_state, action){
         case CREATORS.CHANGE_ROUTE:
             const routs = state.routs
             routs[state.selectedRouteId] = state.selectedRouteCopy
+            localStorage.setItem('routs', routs)
             return{
                 ...state,
                 routs
             }
         case CREATORS.EDIT_SELECTED_ROUTE:
+            localStorage.setItem('routs', routs)
             return{
                 ...state,
                 selectedRouteCopy: action.params.route

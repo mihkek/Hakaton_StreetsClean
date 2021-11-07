@@ -66,11 +66,6 @@ const SidePanel = (props) =>{
                     </div>
 
                     <div>
-                        <label for="routeName" class="placeholder">Конечная точка</label>
-                        <input name="endPoint" type="text" value={props.route.points[props.route.points.length-1]} onChange={onChangeFormValueAction}/>
-                    </div>
-              
-                    <div>
                        <label for="routeName" class="placeholder">Вид техники</label>
                         <select name="typeTeh" value={pageData.typeTeh} onChange={onChangeSelectvalue}>
                             <option value={tehTypes.tractor.number}>{tehTypes.tractor.name}</option>

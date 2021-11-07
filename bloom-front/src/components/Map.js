@@ -30,57 +30,38 @@ const  Map = (props) =>{
       return (
           <div className="map-wrapper">
                 <MapContainer
-                center={position}
-                zoom={6}
-                //maxZoom={10}
-                attributionControl={true}
-                zoomControl={true}
-                doubleClickZoom={true}
-                scrollWheelZoom={true}
-                dragging={true}
-                animate={true}
-                easeLinearity={0.35}
-                >
-                {routs.map(e => 
-                     <TehnikDirection 
-                        RouteId={e.routeId}
-                        Routs={e.points}
-                        Line_color={e.line_color}
-                        Route_name={e.name}
-                        TypeTeh={e.typeTeh}
-                        SendRouteParams={props.onclick}
-                        TehnikMarkerPosiniton = {e.tehnikPosition}
-                        MarkerIconShadow = {undefined}
-                    />
-                )}
-                <TileLayer
-                    url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
-                />
-                {/* <MapConsumer>
-                        {(map) => {
-                        console.log("map center:", map.getCenter());
-                        map.on("click", function (e) {
-                            const { lat, lng } = e.latlng;
-                            setState({
-                                ...state,
-                                clickedLat: lat,
-                                clickedlng: lng
-                            })
-                           // clickPosition()
-                            console.log(lat)
-                           // L.marker([lat, lng], { icon }).addTo(map);
-                        });
-                        return null;
-                    }}
-                 </MapConsumer> */}
-
-                
-                
-                <Marker position={[57.74, 11.94]}>
-                    <Popup>
-                    Popup for any custom information.
-                    </Popup>
-                </Marker>
+                  center={position}
+                  zoom={6}
+                  //maxZoom={10}
+                  attributionControl={true}
+                  zoomControl={true}
+                  doubleClickZoom={true}
+                  scrollWheelZoom={true}
+                  dragging={true}
+                  animate={true}
+                  easeLinearity={0.35}
+                  >
+                  {routs.map(e => 
+                      <TehnikDirection 
+                          RouteId={e.routeId}
+                          Routs={e.points}
+                          Line_color={e.line_color}
+                          Route_name={e.name}
+                          TypeTeh={e.typeTeh}
+                          SendRouteParams={props.onclick}
+                          TehnikMarkerPosiniton = {e.tehnikPosition}
+                          MarkerIconShadow = {undefined}
+                      />
+                  )}
+                  <TileLayer
+                      url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
+                  />
+                  
+                  {/* <Marker position={[57.74, 11.94]}>
+                      <Popup>
+                      Popup for any custom information.
+                      </Popup>
+                  </Marker> */}
                 </MapContainer>
         </div>
       );
