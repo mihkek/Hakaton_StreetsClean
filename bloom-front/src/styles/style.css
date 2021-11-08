@@ -76,6 +76,9 @@ div.leaflet-top.leaflet-right{
    color: white;
    font-size: 50px;
 }
+.loader-message--error{
+  color: red;
+}
 .modalWindow {
     position: fixed;
     top: 0;

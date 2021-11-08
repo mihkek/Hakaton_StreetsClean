@@ -1,7 +1,8 @@
 import Map from "./Map"
+import axios from "axios";
 import L, { point } from "leaflet";
 import "leaflet-routing-machine";
-import React from "react";
+import React, { useEffect } from "react";
 import ModalCenter from "./show-info/modal-center";
 import SidePanel from "./show-info/side-panel";
 import { useState } from "react";
@@ -11,6 +12,10 @@ import { useSelector } from "react-redux";
 import {select_route, edit_selected_route, change_route} from '../state_container/actions'
 import Loader from "./library/Loader";
 import EditPointsDirection from "./show-info/edit-points_direction";
+import { ErrorLoader } from "./library/Loader";
+import API from "../functions/API";
+import { ConstructRoutsFromServerData } from "../functions/routes-manage";
+import { set_routs } from "../state_container/actions";
 
 const Main = () =>{
     const selectedRouteId = useSelector(state => state.selectedRouteId)
@@ -26,8 +31,40 @@ const Main = () =>{
         showEditPointsDialog: false,
         currentRoute: {},
         clicked_lat: 0,
-        clicked_lng: 0
+        clicked_lng: 0,
+        hasError: false,
+        errorMessage: "Not error)"
     })
+
+    useEffect(() => {
+        API({
+            method: 'post', 
+            url: 'get_routes', 
+            secure: true,
+            headers: {},
+            data: {
+            }   
+        })
+        .then(response=> {
+            var routes = ConstructRoutsFromServerData(response.data)
+            dispatch(
+                set_routs({
+                    routs: routes
+                })
+            )
+            setState({
+                ...state
+            })
+        }) 
+        .catch( err=>{
+             setState({
+                 ...state,
+                 hasError: true,
+                 errorMessage: err
+             })
+        })
+    }, [])
+
     const setCurrentRoute = (params) =>{
         dispatch(select_route({
             selectedRouteId: params.route_id
@@ -107,6 +144,7 @@ const Main = () =>{
     return(
         <React.Fragment>
             {isLoad && <Loader/>}
+            {state.hasError && <ErrorLoader errorMessage={state.errorMessage} />}
             <div className="wrapper">
                 <Map
                    onclick={setCurrentRoute}

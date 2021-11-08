@@ -1,4 +1,4 @@
-import { Controller, Get, Post } from '@nestjs/common';
+import { Controller, Get, Post, Req, Res } from '@nestjs/common';
 import { AppService } from './app.service';
 
 @Controller()
@@ -10,19 +10,24 @@ export class AppController {
     return this.appService.getHello();
   }
   @Post("get_routes")
-  async getRoutes(){
-
+  async getRoutes(@Res() res,@Req() req){
+      var routes = await this.appService.getRoutesWithPoints()
+      res.json({
+        routes: routes.routes,
+        error: routes.error,
+        errorMessage: routes.errorMessage
+      })
   }
   @Post("add_route")
-  async addRoute(){
+  async addRoute(@Res() res,@Req() req){
 
   }
   @Post("remove_route")
-  async RemoveRoute(){
+  async RemoveRoute(@Res() res,@Req() req){
 
   }
   @Post("reset_routes")
-  async ResetRoutes(){
+  async ResetRoutes(@Res() res,@Req() req){
     
   }
 }
