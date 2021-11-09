@@ -79,6 +79,7 @@ const SidePanel = (props) =>{
                 </div>
 
                 <button className="blue-button" onClick={save}>Сохранить</button>
+                <button className="blue-button" onClick={props.DeleteAction}>Удалить</button>
                 <button className="blue-button" onClick={props.CloseAction}>Закрыть</button>
             </div>
      </div>

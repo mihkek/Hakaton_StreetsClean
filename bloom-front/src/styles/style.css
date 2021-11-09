@@ -150,14 +150,19 @@ div.leaflet-top.leaflet-right{
     margin: 0;
   }
 
-
-  
   .backpanel{
     left: 80%;
     right: 0;
     width: 20%;
     top: 5%
   }
+  .center-panel{
+    margin: 0, auto;
+    position: absolute;
+    width: 20%;
+    height: 80%;
+  }
+  
   .backpanel-dialog{
       width: 100%;
       height: 100%;
@@ -458,4 +463,9 @@ div.leaflet-top.leaflet-right{
     background-image: linear-gradient(#bb2b4f, #bb2b4f 50%, #bb2b4f);
   }
 
-  
+  /* AddRoute */
+
+  .addRoute{
+    background-color: black;
+    opacity: 0.5;
+  }

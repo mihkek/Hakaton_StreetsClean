@@ -5,6 +5,8 @@ import CloseButton from "../library/close-button"
 import LoaderSpinner from "../library/loader-spinner"
 import L, { point } from "leaflet";
 
+var itemIndex = 0
+
 const EditPointsDirection = (props) =>{
     /*
         Props
@@ -45,14 +47,24 @@ const EditPointsDirection = (props) =>{
    const search = () =>{
 
    }
+   const elementChagne = (element) =>{
+      var points = pageData.points
+      points[element.id].lat = element.lat   
+      points[element.id].lng = element.lng
+      setPageData({
+          ...pageData,
+          points: points
+      })
+   }
+    itemIndex = 0
     return(
         <div className='modalWindow points_directions__container' >
             
                 <div className="points_directions">
                     <CloseButton CloseAction={props.CloseAction}/>
                     <div className="points_directions__scroll">
-                        {pageData.points.map(e =>
-                            <PointItem lat={e.lat} lng={e.lng} adress={e.adress} DeleteAction={removePoint}/>    
+                        {pageData.points.map((e, index) =>
+                            <PointItem id={index} lat={e.lat} lng={e.lng} adress={e.adress} DeleteAction={removePoint} ChangeAction={elementChagne}/>,
                         )} 
                         
                         <div className="points_directions__acitons">
@@ -75,23 +87,36 @@ const PointItem = (props) =>{
         3. Adress
         4. SearchAction
         5. DeleteAction
+        6. ChangeAction
     */
    const [elementData, setElementData] = useState({
        isLoad: false,
        lat: props.lat,
        lng: props.lng,
-       adress: props.adress
+       adress: props.adress,
+       id: props.id
    })
     useEffect(() => {
         setElementData({
             ...elementData,
             adress: "Testadtr"
         })
+        itemIndex +=1
    }, [])
 
    const deletePoint = () =>{
         props.DeleteAction(elementData.lat, elementData.lng)
    }
+   const onChangeFormValueAction = e => {
+    setElementData({
+           ...elementData,
+           [e.target.name]: e.target.value
+         });
+         props.ChangeAction(elementData)
+       };
+    const signalChange = () =>{
+        props.ChangeAction(elementData)
+    }
    var classDiv = elementData.isLoad ? "points_directions__item loading" : "points_directions__item "
     return(
         
@@ -100,11 +125,11 @@ const PointItem = (props) =>{
             {elementData.isLoad && <LoaderSpinner />}
             <div className="points_directions__item--container">
                 <label> Широта</label>
-                <input type="text" name="lat" value={elementData.lat}/>
+                <input type="text" name="lat" value={elementData.lat} onEnded={signalChange} onChange={onChangeFormValueAction}/>
                 <br/>
 
                 <label> Долгота</label>
-                <input type="text" name="lng" value={elementData.lng}/>
+                <input type="text" name="lng" value={elementData.lng} onEnded={signalChange} onChange={onChangeFormValueAction}/>
                 <br/>
 
                 <label> Адрес</label>
