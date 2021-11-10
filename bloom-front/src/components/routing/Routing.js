@@ -33,7 +33,10 @@ const createRoutineMachineLayer = (props) => {
       return line;
     },
     
-    createMarker: function() { return null; },
+     createMarker: function() {
+        if(!props.isLast)
+          return null; 
+      } ,
     //Отключаем разные опции, в частности тут отключается ручное добавление маркеров
       routeWhileDragging: false,
       autoRoute: true,

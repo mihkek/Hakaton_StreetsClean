@@ -91,18 +91,14 @@ const PointItem = (props) =>{
     */
    const [elementData, setElementData] = useState({
        isLoad: false,
+       isEdit: false,
        lat: props.lat,
        lng: props.lng,
        adress: props.adress,
-       id: props.id
+       id: props.id,
+       oldLat: '',
+       oldLng: ''
    })
-    useEffect(() => {
-        setElementData({
-            ...elementData,
-            adress: "Testadtr"
-        })
-        itemIndex +=1
-   }, [])
 
    const deletePoint = () =>{
         props.DeleteAction(elementData.lat, elementData.lng)
@@ -112,31 +108,53 @@ const PointItem = (props) =>{
            ...elementData,
            [e.target.name]: e.target.value
          });
-         props.ChangeAction(elementData)
        };
-    const signalChange = () =>{
+   const editElement = () =>{
+        setElementData({
+            ...elementData,
+            isEdit: true,
+            oldLat: elementData.lat,
+            oldLng: elementData.lng
+        })
+   }
+   const cancelEdit = () =>{
+        setElementData({
+            ...elementData,
+            isEdit: false,
+            lat: elementData.oldLat,
+            lng: elementData.oldLng
+        })
+   }
+   const saveElementData = () =>{
         props.ChangeAction(elementData)
-    }
-   var classDiv = elementData.isLoad ? "points_directions__item loading" : "points_directions__item "
+        setElementData({
+            ...elementData,
+            isEdit: false
+        })
+   }
+
+   var mainDivClass = elementData.isLoad ? "points_directions__item loading" : "points_directions__item "
+   var containerDivClas = !elementData.isEdit ? 
+                                            "points_directions__item--container noedit_container" : 
+                                            "points_directions__item--container"
     return(
         
-       <div className={classDiv}> 
+       <div className={mainDivClass}> 
 
             {elementData.isLoad && <LoaderSpinner />}
-            <div className="points_directions__item--container">
+            <div className={containerDivClas}>
                 <label> Широта</label>
-                <input type="text" name="lat" value={elementData.lat} onEnded={signalChange} onChange={onChangeFormValueAction}/>
+                <input type="text" name="lat" type="number" value={elementData.lat} onChange={onChangeFormValueAction} readOnly={!elementData.isEdit}/>
                 <br/>
 
                 <label> Долгота</label>
-                <input type="text" name="lng" value={elementData.lng} onEnded={signalChange} onChange={onChangeFormValueAction}/>
+                <input type="text" name="lng" type="number" step="0.00001" value={elementData.lng} onChange={onChangeFormValueAction} readOnly={!elementData.isEdit}/>
                 <br/>
 
-                <label> Адрес</label>
-                <input type="text" name="adress" value={elementData.adress}/>
-
                 <button className="blue-button points_directions__item-button" onClick={deletePoint}>X</button>
-                <button className="blue-button points_directions__item-button--save">Поиск</button>
+               {elementData.isEdit && <button className="blue-button points_directions__item-button--cancel" onClick={cancelEdit} >Отмена</button>}
+               {!elementData.isEdit && <button className="blue-button points_directions__item-button--save" onClick={editElement}>Редактировать</button>}
+               {elementData.isEdit && <button className="blue-button points_directions__item-button--save" onClick={saveElementData}>Сохранить</button>}
             </div>
         </div>
 

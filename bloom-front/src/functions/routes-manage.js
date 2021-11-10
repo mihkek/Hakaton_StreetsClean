@@ -24,6 +24,7 @@ export const ConstructRoutsFromServerData = (serverData) => {
                     typeTeh: tehTypes.getByNumber(route.routeData.typeTeh),
                     timeWork: route.routeData.timeWork,
                     tehCount: route.routeData.tehCount,
+                    lastPoint: points[points.length-1]
         })
     })
    return routs

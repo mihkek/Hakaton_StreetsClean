@@ -31,7 +31,14 @@ const TehnikDirection = (props) =>{
             <TehnikMarker 
                      Posiniton = {props.TehnikMarkerPosiniton}
                      MarkerIcon = {props.TypeTeh.image}
+                     IsPointMarker = {false}
             />
+            <TehnikMarker 
+                     Posiniton = {props.LastPoint}
+                     MarkerIcon = {props.TypeTeh.image}
+                     IsPointMarker = {true}
+            />
+            
         </React.Fragment>
     )
 

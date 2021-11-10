@@ -27,8 +27,9 @@ const  Map = (props) =>{
       clickedlng: 39.58271
     })
       const position = [state.lat, state.lng];
+
       return (
-          <div className="map-wrapper">
+          <div className="map-wrapper" >
                 <MapContainer
                   center={position}
                   zoom={6}
@@ -41,7 +42,7 @@ const  Map = (props) =>{
                   animate={true}
                   easeLinearity={0.35}
                   >
-                  {routs.map(e => 
+                  {routs.map((e, index) => 
                       <TehnikDirection 
                           RouteId={e.routeId}
                           Routs={e.points}
@@ -51,6 +52,7 @@ const  Map = (props) =>{
                           SendRouteParams={props.onclick}
                           TehnikMarkerPosiniton = {e.tehnikPosition}
                           MarkerIconShadow = {undefined}
+                          LastPoint = {e.lastPoint}
                       />
                   )}
                   <TileLayer

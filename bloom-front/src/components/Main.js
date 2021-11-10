@@ -145,9 +145,6 @@ const Main = () =>{
         })
          hideAll()
     }
-    const findAdress = (adress) =>{
-        alert(adress)
-    }
     const editControlPoints = () =>{
         setState({
             ...state,
@@ -190,9 +187,9 @@ const Main = () =>{
     const saveNewPointsData = (points) =>{
         if(currentRouteCopy == undefined)
             return 
-
+             hideAll()
              dispatch(set_load({
-            isLoad: true
+                isLoad: true
         }))
         API({
             method: 'post', 
@@ -229,6 +226,7 @@ const Main = () =>{
             {isLoad && <Loader/>}
             {state.hasError && <ErrorLoader errorMessage={state.errorMessage} />}
             <div className="wrapper">
+                <a href="map.html" target="_blank"> <button className="map_button">Поиск координат</button></a>
                 <Map
                    onclick={setCurrentRoute}
                 />

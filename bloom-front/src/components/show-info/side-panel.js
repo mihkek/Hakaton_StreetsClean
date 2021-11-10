@@ -32,18 +32,18 @@ const SidePanel = (props) =>{
          });
        };
     const onChangeSelectvalue = e =>{
-        // var type = {}
-        // if(e.target.value === tehTypes.tractor.number)
-        //     type = tehTypes.tractor
-        // if(e.target.value === tehTypes.kamaz.number)
-        //     type = tehTypes.kamaz
-        // setPageData({
-        //     ...pageData,
-        //     route:{
-        //         ...pageData.route,
-        //         typeTeh: type
-        //     }
-        // })
+        var type = {}
+        if(e.target.value === tehTypes.tractor.number.toString())
+            type = tehTypes.tractor
+        if(e.target.value === tehTypes.kamaz.number.toString())
+            type = tehTypes.kamaz
+        setPageData({
+            ...pageData,
+            route:{
+                ...pageData.route,
+                typeTeh: type
+            }
+        })
     }
     return(
         <div className='modalWindow backpanel' >

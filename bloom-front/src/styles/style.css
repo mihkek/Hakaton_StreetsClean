@@ -395,6 +395,10 @@ div.leaflet-top.leaflet-right{
       width: 100%;
       height: 100%;
   }
+  .points_directions__item--container input{
+    background-color: white;
+  }
+
   .points_directions__acitons{
       display: block;
       /* position: absolute; */
@@ -424,18 +428,24 @@ div.leaflet-top.leaflet-right{
       
       background: #60a3d8 linear-gradient(#df718c, #df718c 50%, #df718c);
   }
-  .points_directions__item-button--save{
+  .points_directions__item-button--save, .points_directions__item-button--cancel {
     position: absolute;
     /* margin-top: 1%; */
     font-size: 12px;
     bottom: 1px;
     right: 10px;
-    width: 10%;
+    width: 22%;
     height: 10%;
     text-align: center;
     line-height: 0;
     cursor: pointer;
     background: #60a3d8 linear-gradient(#89bbe2, #60a3d8 50%, #378bce);
+    font-size: 70%;
+}
+
+.points_directions__item-button--cancel{
+  right: 30%;
+  width: 15%;
 }
   .points_directions__item input{
     display: inline-block;
@@ -463,9 +473,28 @@ div.leaflet-top.leaflet-right{
     background-image: linear-gradient(#bb2b4f, #bb2b4f 50%, #bb2b4f);
   }
 
+  /* NoEditContainer */
+
+  .noedit_container input{
+    background-color: rgb(240, 231, 231);
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
   /* AddRoute */
 
   .addRoute{
     background-color: black;
     opacity: 0.5;
+  }
+
+  /* MapButton */
+
+  .map_button{
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    z-index: 100000;
   }

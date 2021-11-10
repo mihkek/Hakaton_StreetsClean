@@ -6,7 +6,7 @@ export const getColor = () =>{
     switch(number){
         case 1: return "red"
         case 2: return "green"
-        case 3: return "yellow"
+        case 3: return "black"
         case 4: return "blue"
         case 5: return "orange"
         default: return "gray"

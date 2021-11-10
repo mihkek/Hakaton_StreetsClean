@@ -7,6 +7,12 @@ const createTehnikMarker = (props) =>{
         1.Posiniton(lat,len)
         2.MarkerIcon
     */
+    var len = ''
+    if(props.Posiniton.len != undefined)
+        len = props.Posiniton.len
+    else{
+        len = props.Posiniton.lng
+    }
     const icon  = L.icon({
         iconUrl: props.MarkerIcon,
         // shadowUrl: props.MarkerIconShadow === undefined ? undefined : props,MarkerIconShadow,
@@ -16,7 +22,7 @@ const createTehnikMarker = (props) =>{
         shadowAnchor: [0, 0],  // the same for the shadow
         popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
     });
-    const instance = L.marker([props.Posiniton.lat, props.Posiniton.len], {icon: icon})
+    const instance = !props.IsPointMarker ? L.marker([props.Posiniton.lat, len], {icon: icon}) : L.marker([props.Posiniton.lat, len])
 
     return instance
 }

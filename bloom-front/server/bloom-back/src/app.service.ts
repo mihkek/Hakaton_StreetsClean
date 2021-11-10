@@ -104,6 +104,11 @@ export class AppService {
          points.route = route
          await points.save()
      } ))
+     if(points.length != 0){
+       route.tehnikPosition_lat = points[0].lat
+       route.tehnikPosition_len = points[0].lng
+       await route.save()
+     }
   }
   async setNewRoutes(){
 
